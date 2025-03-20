@@ -27,113 +27,68 @@
 		///  the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			panelTop = new Panel();
-			buttonHistory = new Button();
-			button3 = new Button();
-			buttonEdit = new Button();
 			buttonAdd = new Button();
-			panelFill = new Panel();
-			dataGridView = new DataGridView();
+			tableLayoutPanel = new TableLayoutPanel();
 			panelTop.SuspendLayout();
-			panelFill.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
 			SuspendLayout();
 			// 
 			// panelTop
 			// 
-			panelTop.Controls.Add(buttonHistory);
-			panelTop.Controls.Add(button3);
-			panelTop.Controls.Add(buttonEdit);
 			panelTop.Controls.Add(buttonAdd);
 			panelTop.Dock = DockStyle.Top;
 			panelTop.Location = new Point(0, 0);
 			panelTop.Name = "panelTop";
 			panelTop.Padding = new Padding(16);
-			panelTop.Size = new Size(584, 74);
+			panelTop.Size = new Size(487, 74);
 			panelTop.TabIndex = 0;
-			// 
-			// buttonHistory
-			// 
-			buttonHistory.Dock = DockStyle.Fill;
-			buttonHistory.Location = new Point(315, 16);
-			buttonHistory.Name = "buttonHistory";
-			buttonHistory.Size = new Size(253, 42);
-			buttonHistory.TabIndex = 3;
-			buttonHistory.Text = "История поставок";
-			buttonHistory.UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			button3.Dock = DockStyle.Left;
-			button3.Location = new Point(231, 16);
-			button3.Name = "button3";
-			button3.Size = new Size(84, 42);
-			button3.TabIndex = 2;
-			button3.Text = "Удалить";
-			button3.UseVisualStyleBackColor = true;
-			// 
-			// buttonEdit
-			// 
-			buttonEdit.Dock = DockStyle.Left;
-			buttonEdit.Location = new Point(116, 16);
-			buttonEdit.Name = "buttonEdit";
-			buttonEdit.Size = new Size(115, 42);
-			buttonEdit.TabIndex = 1;
-			buttonEdit.Text = "Редактировать";
-			buttonEdit.UseVisualStyleBackColor = true;
 			// 
 			// buttonAdd
 			// 
 			buttonAdd.Dock = DockStyle.Left;
 			buttonAdd.Location = new Point(16, 16);
 			buttonAdd.Name = "buttonAdd";
-			buttonAdd.Size = new Size(100, 42);
+			buttonAdd.Size = new Size(167, 42);
 			buttonAdd.TabIndex = 0;
-			buttonAdd.Text = "Добавить";
+			buttonAdd.Text = "Добавить поставщика";
 			buttonAdd.UseVisualStyleBackColor = true;
+			buttonAdd.Click += buttonAdd_Click;
 			// 
-			// panelFill
+			// tableLayoutPanel
 			// 
-			panelFill.Controls.Add(dataGridView);
-			panelFill.Dock = DockStyle.Fill;
-			panelFill.Location = new Point(0, 74);
-			panelFill.Name = "panelFill";
-			panelFill.Padding = new Padding(16);
-			panelFill.Size = new Size(584, 387);
-			panelFill.TabIndex = 1;
-			// 
-			// dataGridView
-			// 
-			dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridView.Dock = DockStyle.Fill;
-			dataGridView.Location = new Point(16, 16);
-			dataGridView.Name = "dataGridView";
-			dataGridView.Size = new Size(552, 355);
-			dataGridView.TabIndex = 0;
+			tableLayoutPanel.AutoScroll = true;
+			tableLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			tableLayoutPanel.ColumnCount = 1;
+			tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			tableLayoutPanel.Dock = DockStyle.Fill;
+			tableLayoutPanel.Location = new Point(0, 74);
+			tableLayoutPanel.Name = "tableLayoutPanel";
+			tableLayoutPanel.RowCount = 1;
+			tableLayoutPanel.RowStyles.Add(new RowStyle());
+			tableLayoutPanel.Size = new Size(487, 395);
+			tableLayoutPanel.TabIndex = 1;
 			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(584, 461);
-			Controls.Add(panelFill);
+			ClientSize = new Size(487, 469);
+			Controls.Add(tableLayoutPanel);
 			Controls.Add(panelTop);
+			Icon = (Icon)resources.GetObject("$this.Icon");
+			MaximizeBox = false;
 			Name = "MainForm";
+			Text = "Список поставщиков";
 			Load += MainForm_Load;
 			panelTop.ResumeLayout(false);
-			panelFill.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
 			ResumeLayout(false);
 		}
 
 		#endregion
 
 		private Panel panelTop;
-		private Button buttonHistory;
-		private Button button3;
-		private Button buttonEdit;
 		private Button buttonAdd;
-		private Panel panelFill;
-		private DataGridView dataGridView;
+		private TableLayoutPanel tableLayoutPanel;
 	}
 }
