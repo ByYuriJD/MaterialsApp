@@ -35,6 +35,7 @@
 			// 
 			// panel1
 			// 
+			panel1.BackColor = Color.FromArgb(244, 232, 211);
 			panel1.BorderStyle = BorderStyle.FixedSingle;
 			panel1.Controls.Add(labelDate);
 			panel1.Controls.Add(labelPrice);
@@ -106,6 +107,7 @@
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
+			BackColor = Color.White;
 			BorderStyle = BorderStyle.FixedSingle;
 			Controls.Add(labelDescription);
 			Controls.Add(labelName);

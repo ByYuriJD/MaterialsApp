@@ -16,15 +16,10 @@ namespace MaterialsApp {
 			db.MaterialDeliveries.Load();
 			db.Materials.Load();
 
-			Supplier[] suppliers = db.Suppliers.Local.OrderByDescending(e => e.NameOfSupplier).ToArray();
-
-			foreach (Supplier supplier in suppliers) {
-				SupplierPanel supplierPanel = new SupplierPanel(this, supplier);
-				tableLayoutPanel.Controls.Add(supplierPanel);
-			}
+			updatePanel();
 		}
 		private void updatePanel() {
-			Supplier[] suppliers = db.Suppliers.Local.OrderByDescending(e => e.NameOfSupplier).ToArray();
+			Supplier[] suppliers = db.Suppliers.Local.OrderByDescending(e => e.Id).ToArray();
 
 			tableLayoutPanel.Controls.Clear();
 			foreach (Supplier supplier in suppliers) {
@@ -67,7 +62,7 @@ namespace MaterialsApp {
 			db.Suppliers.Add(newSupplier);
 			db.SaveChanges();
 			updatePanel();
-			MessageBox.Show("Поставщик создан");
+			MessageBox.Show("Поставщик создан", "Поставщики", MessageBoxButtons.OK,MessageBoxIcon.Information);
 		}
 	}
 }

@@ -36,6 +36,8 @@
 			// 
 			// panelTop
 			// 
+			panelTop.BackColor = Color.White;
+			panelTop.BorderStyle = BorderStyle.FixedSingle;
 			panelTop.Controls.Add(buttonAdd);
 			panelTop.Dock = DockStyle.Top;
 			panelTop.Location = new Point(0, 0);
@@ -46,19 +48,21 @@
 			// 
 			// buttonAdd
 			// 
+			buttonAdd.BackColor = Color.FromArgb(244, 232, 211);
 			buttonAdd.Dock = DockStyle.Left;
 			buttonAdd.Location = new Point(16, 16);
 			buttonAdd.Name = "buttonAdd";
-			buttonAdd.Size = new Size(167, 42);
+			buttonAdd.Size = new Size(167, 40);
 			buttonAdd.TabIndex = 0;
 			buttonAdd.Text = "Добавить поставщика";
-			buttonAdd.UseVisualStyleBackColor = true;
+			buttonAdd.UseVisualStyleBackColor = false;
 			buttonAdd.Click += buttonAdd_Click;
 			// 
 			// tableLayoutPanel
 			// 
 			tableLayoutPanel.AutoScroll = true;
 			tableLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			tableLayoutPanel.BackColor = Color.White;
 			tableLayoutPanel.ColumnCount = 1;
 			tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 			tableLayoutPanel.Dock = DockStyle.Fill;

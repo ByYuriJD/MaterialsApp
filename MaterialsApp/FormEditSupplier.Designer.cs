@@ -25,8 +25,8 @@
 		private void InitializeComponent() {
 			components = new System.ComponentModel.Container();
 			panel1 = new Panel();
-			buttonCancel = new Button();
 			buttonConfirm = new Button();
+			buttonCancel = new Button();
 			flowLayoutPanel1 = new FlowLayoutPanel();
 			panel2 = new Panel();
 			textBoxName = new TextBox();
@@ -48,40 +48,44 @@
 			// 
 			// panel1
 			// 
+			panel1.BackColor = Color.White;
 			panel1.BorderStyle = BorderStyle.FixedSingle;
-			panel1.Controls.Add(buttonCancel);
 			panel1.Controls.Add(buttonConfirm);
+			panel1.Controls.Add(buttonCancel);
 			panel1.Dock = DockStyle.Top;
 			panel1.Location = new Point(0, 0);
 			panel1.Name = "panel1";
 			panel1.Size = new Size(393, 44);
 			panel1.TabIndex = 0;
 			// 
-			// buttonCancel
-			// 
-			buttonCancel.DialogResult = DialogResult.Cancel;
-			buttonCancel.Dock = DockStyle.Left;
-			buttonCancel.Location = new Point(128, 0);
-			buttonCancel.Name = "buttonCancel";
-			buttonCancel.Size = new Size(133, 42);
-			buttonCancel.TabIndex = 1;
-			buttonCancel.Text = "Отменить";
-			buttonCancel.UseVisualStyleBackColor = true;
-			// 
 			// buttonConfirm
 			// 
+			buttonConfirm.BackColor = Color.FromArgb(244, 232, 211);
 			buttonConfirm.DialogResult = DialogResult.Yes;
 			buttonConfirm.Dock = DockStyle.Left;
-			buttonConfirm.Location = new Point(0, 0);
+			buttonConfirm.Location = new Point(127, 0);
 			buttonConfirm.Name = "buttonConfirm";
-			buttonConfirm.Size = new Size(128, 42);
+			buttonConfirm.Size = new Size(131, 42);
 			buttonConfirm.TabIndex = 0;
 			buttonConfirm.Text = "Подтвердить";
-			buttonConfirm.UseVisualStyleBackColor = true;
+			buttonConfirm.UseVisualStyleBackColor = false;
 			buttonConfirm.Click += buttonConfirm_Click;
+			// 
+			// buttonCancel
+			// 
+			buttonCancel.BackColor = Color.FromArgb(244, 232, 211);
+			buttonCancel.DialogResult = DialogResult.Cancel;
+			buttonCancel.Dock = DockStyle.Left;
+			buttonCancel.Location = new Point(0, 0);
+			buttonCancel.Name = "buttonCancel";
+			buttonCancel.Size = new Size(127, 42);
+			buttonCancel.TabIndex = 1;
+			buttonCancel.Text = "Отменить";
+			buttonCancel.UseVisualStyleBackColor = false;
 			// 
 			// flowLayoutPanel1
 			// 
+			flowLayoutPanel1.BackColor = Color.White;
 			flowLayoutPanel1.Controls.Add(panel2);
 			flowLayoutPanel1.Controls.Add(panel3);
 			flowLayoutPanel1.Controls.Add(panel4);
@@ -93,11 +97,12 @@
 			// 
 			// panel2
 			// 
+			panel2.BackColor = Color.FromArgb(244, 232, 211);
 			panel2.Controls.Add(textBoxName);
 			panel2.Controls.Add(labelName);
 			panel2.Location = new Point(3, 3);
 			panel2.Name = "panel2";
-			panel2.Size = new Size(125, 63);
+			panel2.Size = new Size(125, 78);
 			panel2.TabIndex = 0;
 			// 
 			// textBoxName
@@ -120,11 +125,12 @@
 			// 
 			// panel3
 			// 
+			panel3.BackColor = Color.FromArgb(244, 232, 211);
 			panel3.Controls.Add(textBoxInn);
 			panel3.Controls.Add(labelInn);
 			panel3.Location = new Point(134, 3);
 			panel3.Name = "panel3";
-			panel3.Size = new Size(125, 63);
+			panel3.Size = new Size(125, 78);
 			panel3.TabIndex = 2;
 			// 
 			// textBoxInn
@@ -147,11 +153,12 @@
 			// 
 			// panel4
 			// 
+			panel4.BackColor = Color.FromArgb(244, 232, 211);
 			panel4.Controls.Add(comboBoxType);
 			panel4.Controls.Add(labelType);
 			panel4.Location = new Point(265, 3);
 			panel4.Name = "panel4";
-			panel4.Size = new Size(125, 63);
+			panel4.Size = new Size(125, 78);
 			panel4.TabIndex = 2;
 			// 
 			// comboBoxType

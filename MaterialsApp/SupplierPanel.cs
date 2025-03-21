@@ -13,6 +13,7 @@ namespace MaterialsApp {
 	public partial class SupplierPanel : UserControl {
 		private Supplier supplier;
 		private MainForm main;
+		private ColorConverter colorConverter;
 
 		public SupplierPanel(MainForm main, Supplier supplier) {
 			InitializeComponent();
@@ -21,11 +22,12 @@ namespace MaterialsApp {
 
 			this.main = main;
 			this.supplier = supplier;
+			this.colorConverter = new ColorConverter();
 
 			updateView();
 		}
 		private void updateView() {
-			labelSupplier.Text = supplier.NameOfSupplier;
+			labelSupplier.Text = "[" + supplier.Id + "] " + supplier.NameOfSupplier;
 			labelTypeInn.Text = supplier.IdOfTypeNavigation.TypeOfPartner + " | " + supplier.Inn;
 
 
@@ -41,7 +43,7 @@ namespace MaterialsApp {
 
 
 			buttonActive.Text = supplier.IsActive ? "Действующий" : "Не действующий";
-			buttonActive.BackColor = supplier.IsActive ? SystemColors.ActiveCaption : SystemColors.InactiveCaption;
+			buttonActive.BackColor = supplier.IsActive ? (Color)colorConverter.ConvertFromString("#67BA80") : (Color)colorConverter.ConvertFromString("#FFFFFF");
 		}
 
 		private void Active_Click(object sender, EventArgs e) {
@@ -49,13 +51,12 @@ namespace MaterialsApp {
 
 			main.saveSupplier(supplier);
 
-			buttonActive.Text = supplier.IsActive ? "Действующий" : "Не действующий";
-			buttonActive.BackColor = supplier.IsActive ? SystemColors.ActiveCaption : SystemColors.InactiveCaption;
+			updateView();
 		}
 
 		private void buttonDelete_Click(object sender, EventArgs e) {
 			DialogResult result = MessageBox.Show("Вы уверены, что хотите удалить данного поставщика?",
-				"",
+				"Поставщики",
 				MessageBoxButtons.OKCancel);
 			if (result == DialogResult.OK) {
 				main.deleteSupplier(supplier);
@@ -76,7 +77,7 @@ namespace MaterialsApp {
 			main.saveSupplier(supplier);
 			updateView();
 
-			MessageBox.Show("Поставщик обнавлен");
+			MessageBox.Show("Поставщик обновлен", "Поставщики", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void buttonHistory_Click(object sender, EventArgs e) {

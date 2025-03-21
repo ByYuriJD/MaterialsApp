@@ -14,7 +14,7 @@ namespace MaterialsApp {
 		public DeliveryPanel(MaterialDelivery delivery) {
 			InitializeComponent();
 			Material material = delivery.IdOfMaterialNavigation;
-			labelName.Text = material.NameOfMaterial;
+			labelName.Text = "[" + delivery.Id + "] " + material.NameOfMaterial;
 			labelDescription.Text = material.Description;
 			labelDate.Text = "Дата поставки: " + delivery.DateOfDelivery.ToString();
 			labelInPackage.Text = "Кол-во в упаковке: " + delivery.AmountInPackage.ToString();

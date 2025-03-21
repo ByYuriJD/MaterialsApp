@@ -58,6 +58,7 @@
 			// 
 			// panel1
 			// 
+			panel1.BackColor = Color.White;
 			panel1.Controls.Add(labelMeanQuality);
 			panel1.Controls.Add(labelTypeInn);
 			panel1.Controls.Add(labelSupplier);
@@ -89,6 +90,7 @@
 			// 
 			// buttonHistory
 			// 
+			buttonHistory.BackColor = Color.FromArgb(244, 232, 211);
 			buttonHistory.Dock = DockStyle.Bottom;
 			buttonHistory.Location = new Point(0, 89);
 			buttonHistory.Margin = new Padding(2);
@@ -96,7 +98,7 @@
 			buttonHistory.Size = new Size(205, 23);
 			buttonHistory.TabIndex = 3;
 			buttonHistory.Text = "История поставок";
-			buttonHistory.UseVisualStyleBackColor = true;
+			buttonHistory.UseVisualStyleBackColor = false;
 			buttonHistory.Click += buttonHistory_Click;
 			// 
 			// buttonActive
@@ -113,6 +115,7 @@
 			// 
 			// flowLayoutPanel1
 			// 
+			flowLayoutPanel1.BackColor = Color.White;
 			flowLayoutPanel1.Controls.Add(buttonActive);
 			flowLayoutPanel1.Controls.Add(buttonDelete);
 			flowLayoutPanel1.Controls.Add(buttonEdit);
@@ -126,30 +129,33 @@
 			// 
 			// buttonDelete
 			// 
+			buttonDelete.BackColor = Color.FromArgb(244, 232, 211);
 			buttonDelete.Location = new Point(3, 42);
 			buttonDelete.Margin = new Padding(2);
 			buttonDelete.Name = "buttonDelete";
 			buttonDelete.Size = new Size(137, 23);
 			buttonDelete.TabIndex = 1;
 			buttonDelete.Text = "Удалить";
-			buttonDelete.UseVisualStyleBackColor = true;
+			buttonDelete.UseVisualStyleBackColor = false;
 			buttonDelete.Click += buttonDelete_Click;
 			// 
 			// buttonEdit
 			// 
+			buttonEdit.BackColor = Color.FromArgb(244, 232, 211);
 			buttonEdit.Location = new Point(3, 69);
 			buttonEdit.Margin = new Padding(2);
 			buttonEdit.Name = "buttonEdit";
 			buttonEdit.Size = new Size(137, 40);
 			buttonEdit.TabIndex = 2;
 			buttonEdit.Text = "Редактировать";
-			buttonEdit.UseVisualStyleBackColor = true;
+			buttonEdit.UseVisualStyleBackColor = false;
 			buttonEdit.Click += buttonEdit_Click;
 			// 
 			// SupplierPanel
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
+			BackColor = Color.White;
 			Controls.Add(panel1);
 			Controls.Add(flowLayoutPanel1);
 			Name = "SupplierPanel";
