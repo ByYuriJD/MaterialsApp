@@ -14,8 +14,9 @@ namespace MaterialsApp {
 		private Supplier supplier;
 		private MainForm main;
 		private ColorConverter colorConverter;
+		private int supplierIndex;
 
-		public SupplierPanel(MainForm main, Supplier supplier) {
+		public SupplierPanel(MainForm main, Supplier supplier,int supplierIndex) {
 			InitializeComponent();
 
 			Dock = DockStyle.Fill;
@@ -23,12 +24,14 @@ namespace MaterialsApp {
 			this.main = main;
 			this.supplier = supplier;
 			this.colorConverter = new ColorConverter();
+			this.supplierIndex = supplierIndex;
 
 			updateView();
 		}
 		private void updateView() {
-			labelSupplier.Text = "[" + supplier.Id + "] " + supplier.NameOfSupplier;
-			labelTypeInn.Text = supplier.IdOfTypeNavigation.TypeOfPartner + " | " + supplier.Inn;
+			labelSupplier.Text = "[#" + supplierIndex + "] " + supplier.NameOfSupplier;
+			labelType.Text = supplier.IdOfTypeNavigation.TypeOfPartner;
+			labelInn.Text = supplier.Inn;
 
 
 			if (supplier.MaterialDeliveries.Any()) {
@@ -37,10 +40,11 @@ namespace MaterialsApp {
 					deliveryQuality += delivery.QualityOfDelivery;
 				}
 				deliveryQuality /= supplier.MaterialDeliveries.Count;
-				labelMeanQuality.Text = deliveryQuality.ToString();
-			} else
-				labelMeanQuality.Text = "Отсутствуют доставки";
-
+				labelMeanQuality.Text = "Среднее качество поставок: " + deliveryQuality.ToString();
+			} else { 
+				labelMeanQuality.Text = "Отсутствуют поставки";
+				buttonHistory.Enabled = false;
+			}
 
 			buttonActive.Text = supplier.IsActive ? "Действующий" : "Не действующий";
 			buttonActive.BackColor = supplier.IsActive ? (Color)colorConverter.ConvertFromString("#67BA80") : (Color)colorConverter.ConvertFromString("#FFFFFF");

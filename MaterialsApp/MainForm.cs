@@ -19,11 +19,12 @@ namespace MaterialsApp {
 			updatePanel();
 		}
 		private void updatePanel() {
-			Supplier[] suppliers = db.Suppliers.Local.OrderByDescending(e => e.Id).ToArray();
+			Supplier[] suppliers = db.Suppliers.Local.OrderByDescending(e => e.NameOfSupplier).ToArray();
 
 			tableLayoutPanel.Controls.Clear();
+			int supplierIndex = 0;
 			foreach (Supplier supplier in suppliers) {
-				SupplierPanel supplierPanel = new SupplierPanel(this, supplier);
+				SupplierPanel supplierPanel = new SupplierPanel(this, supplier,++supplierIndex);
 				tableLayoutPanel.Controls.Add(supplierPanel);
 			}
 		}

@@ -14,9 +14,14 @@ namespace MaterialsApp {
 		public FormDeliveries(Supplier supplier) {
 			InitializeComponent();
 
-			foreach(MaterialDelivery delivery in supplier.MaterialDeliveries) {
-				DeliveryPanel deliveryPanel = new DeliveryPanel(delivery);
-				tableLayoutPanel1.Controls.Add(deliveryPanel);
+			if (supplier.MaterialDeliveries.Count > 0) {
+				int deliveryIndex = 0;
+				foreach (MaterialDelivery delivery in supplier.MaterialDeliveries) {
+					DeliveryPanel deliveryPanel = new DeliveryPanel(delivery, ++deliveryIndex);
+					tableLayoutPanel1.Controls.Add(deliveryPanel);
+				}
+			} else {
+				tableLayoutPanel1.Controls.Add(new Label { Text = "Отсутствуют поставки"});
 			}
 		}
 	}
