@@ -15,16 +15,52 @@ namespace MaterialsApp {
 			db.OrganizationTypes.Load();
 			db.MaterialDeliveries.Load();
 			db.Materials.Load();
+			
+			dataGridView.DataSource = db.Suppliers.Local.ToArray();
 
-			updatePanel();
+			dataGridView.Columns["Id"].Visible = false;
+			dataGridView.Columns["IdOfType"].Visible = false;
+			dataGridView.Columns["IdOfTypeNavigation"].Visible = false;
+			dataGridView.Columns["MaterialDeliveries"].Visible = false;
+			dataGridView.Columns["NameOfSupplier"].DisplayIndex = 1;
+			dataGridView.Columns["NameOfSupplier"].HeaderText = "Наименование поставщика";
+			dataGridView.Columns["Inn"].DisplayIndex = 2;
+			dataGridView.Columns["Inn"].HeaderText = "Инн";
+			dataGridView.Columns["IsActive"].DisplayIndex = 3;
+			dataGridView.Columns["IsActive"].HeaderText = "Действующий";
+
+			DataGridViewTextBoxColumn columnType = new DataGridViewTextBoxColumn();
+			columnType.Name = "Тип поставщика";
+			columnType.DisplayIndex = 0;
+			dataGridView.Columns.Add(columnType);
+
+			DataGridViewTextBoxColumn columnRating = new DataGridViewTextBoxColumn();
+			columnRating.Name = "Среднее качество поставок";
+			columnRating.DisplayIndex = 4;
+			dataGridView.Columns.Add(columnRating);
+
+			updateView();
 		}
-		private void updatePanel() {
-			Supplier[] suppliers = db.Suppliers.Local.OrderByDescending(e => e.Id).ToArray();
+		private void updateView() {
+			Supplier[] suppliers = db.Suppliers.Local.ToArray();
 
-			tableLayoutPanel.Controls.Clear();
-			foreach (Supplier supplier in suppliers) {
-				SupplierPanel supplierPanel = new SupplierPanel(this, supplier);
-				tableLayoutPanel.Controls.Add(supplierPanel);
+			dataGridView.Refresh();
+
+			for (int i = 0; i < dataGridView.RowCount; i++) {
+				DataGridViewRow row = dataGridView.Rows[i];
+				Supplier supplier = suppliers[i];
+				row.Cells["Тип поставщика"].Value = supplier.IdOfTypeNavigation.TypeOfPartner;
+
+
+				if (supplier.MaterialDeliveries.Any()) {
+					float deliveryQuality = 0;
+					foreach (MaterialDelivery delivery in supplier.MaterialDeliveries) {
+						deliveryQuality += delivery.QualityOfDelivery;
+					}
+					deliveryQuality /= supplier.MaterialDeliveries.Count;
+					row.Cells["Среднее качество поставок"].Value = deliveryQuality.ToString();
+				} else
+					row.Cells["Среднее качество поставок"].Value = "Отсутствуют доставки";
 			}
 		}
 
@@ -36,12 +72,11 @@ namespace MaterialsApp {
 		public void saveSupplier(Supplier supplier) {
 			db.Suppliers.Update(supplier);
 			db.SaveChanges();
-			updatePanel();
+			updateView();
 		}
 		public void deleteSupplier(Supplier supplier) {
 			db.Suppliers.Remove(supplier);
 			db.SaveChanges();
-			updatePanel();
 		}
 
 		private void buttonAdd_Click(object sender, EventArgs e) {
@@ -54,15 +89,57 @@ namespace MaterialsApp {
 			Supplier newSupplier = new Supplier {
 				Inn = newSupplierForm.textBoxInn.Text,
 				NameOfSupplier = newSupplierForm.textBoxName.Text,
-				IsActive = true,
+				IsActive = newSupplierForm.checkBoxActive.Checked,
 				IdOfType = db.OrganizationTypes.FirstOrDefault(
 						e => e.TypeOfPartner == newSupplierForm.comboBoxType.Text).Id
 			};
 
 			db.Suppliers.Add(newSupplier);
 			db.SaveChanges();
-			updatePanel();
+			updateView();
 			MessageBox.Show("Поставщик создан", "Поставщики", MessageBoxButtons.OK,MessageBoxIcon.Information);
+		}
+
+		private void buttonDelete_Click(object sender, EventArgs e) {
+			if (dataGridView.SelectedRows.Count == 0) return;
+			Supplier supplier = db.Suppliers.ToArray()[dataGridView.SelectedRows[0].Index];
+
+			DialogResult result = MessageBox.Show("Вы уверены, что хотите удалить данного поставщика?",
+				"Поставщики",
+				MessageBoxButtons.OKCancel);
+			if (result == DialogResult.OK) {
+				deleteSupplier(supplier);
+				MessageBox.Show("Поставщик удален");
+			}
+		}
+
+		private void buttonEdit_Click(object sender, EventArgs e) {
+			if (dataGridView.SelectedRows.Count == 0) return;
+			Supplier supplier = db.Suppliers.ToArray()[dataGridView.SelectedRows[0].Index];
+
+			FormEditSupplier editSupplier = new FormEditSupplier(db.OrganizationTypes.ToArray(), supplier);
+			DialogResult result = editSupplier.ShowDialog();
+
+			if (result == DialogResult.Cancel)
+				return;
+			supplier.NameOfSupplier = editSupplier.textBoxName.Text;
+			supplier.Inn = editSupplier.textBoxInn.Text;
+			supplier.IsActive = editSupplier.checkBoxActive.Checked;
+			supplier.IdOfType = db.OrganizationTypes.FirstOrDefault(
+				e => e.TypeOfPartner == editSupplier.comboBoxType.Text).Id;
+			saveSupplier(supplier);
+			updateView();
+
+			MessageBox.Show("Поставщик обновлен", "Поставщики", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		private void buttonHistory_Click(object sender, EventArgs e) {
+			if (dataGridView.SelectedRows.Count == 0) return;
+
+			Supplier supplier = db.Suppliers.ToArray()[dataGridView.SelectedRows[0].Index];
+
+			FormDeliveries formDeliveries = new FormDeliveries(db.MaterialDeliveries.Local.Where(e=>e.IdOfSupplier==supplier.Id).ToArray());
+			formDeliveries.ShowDialog();
 		}
 	}
 }

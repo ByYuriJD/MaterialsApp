@@ -80,9 +80,9 @@ namespace MaterialsApp {
 			MessageBox.Show("Поставщик обновлен", "Поставщики", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
-		private void buttonHistory_Click(object sender, EventArgs e) {
-			FormDeliveries formDeliveries = new FormDeliveries(supplier);
-			formDeliveries.ShowDialog();
-		}
+		//private void buttonHistory_Click(object sender, EventArgs e) {
+		//	FormDeliveries formDeliveries = new FormDeliveries(main.db.OrganizationTypes.ToArray(), supplier);
+		//	formDeliveries.ShowDialog();
+		//}
 	}
 }

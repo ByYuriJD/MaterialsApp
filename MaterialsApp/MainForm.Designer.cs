@@ -29,22 +29,65 @@
 		private void InitializeComponent() {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			panelTop = new Panel();
+			buttonHistory = new Button();
+			buttonDelete = new Button();
+			buttonEdit = new Button();
 			buttonAdd = new Button();
-			tableLayoutPanel = new TableLayoutPanel();
+			dataGridView = new DataGridView();
 			panelTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
 			SuspendLayout();
 			// 
 			// panelTop
 			// 
 			panelTop.BackColor = Color.White;
 			panelTop.BorderStyle = BorderStyle.FixedSingle;
+			panelTop.Controls.Add(buttonHistory);
+			panelTop.Controls.Add(buttonDelete);
+			panelTop.Controls.Add(buttonEdit);
 			panelTop.Controls.Add(buttonAdd);
 			panelTop.Dock = DockStyle.Top;
 			panelTop.Location = new Point(0, 0);
 			panelTop.Name = "panelTop";
 			panelTop.Padding = new Padding(16);
-			panelTop.Size = new Size(487, 74);
+			panelTop.Size = new Size(701, 74);
 			panelTop.TabIndex = 0;
+			// 
+			// buttonHistory
+			// 
+			buttonHistory.BackColor = Color.FromArgb(244, 232, 211);
+			buttonHistory.Dock = DockStyle.Left;
+			buttonHistory.Location = new Point(396, 16);
+			buttonHistory.Name = "buttonHistory";
+			buttonHistory.Size = new Size(167, 40);
+			buttonHistory.TabIndex = 3;
+			buttonHistory.Text = "История поставок";
+			buttonHistory.UseVisualStyleBackColor = false;
+			buttonHistory.Click += buttonHistory_Click;
+			// 
+			// buttonDelete
+			// 
+			buttonDelete.BackColor = Color.FromArgb(244, 232, 211);
+			buttonDelete.Dock = DockStyle.Left;
+			buttonDelete.Location = new Point(274, 16);
+			buttonDelete.Name = "buttonDelete";
+			buttonDelete.Size = new Size(122, 40);
+			buttonDelete.TabIndex = 2;
+			buttonDelete.Text = "Удалить";
+			buttonDelete.UseVisualStyleBackColor = false;
+			buttonDelete.Click += buttonDelete_Click;
+			// 
+			// buttonEdit
+			// 
+			buttonEdit.BackColor = Color.FromArgb(244, 232, 211);
+			buttonEdit.Dock = DockStyle.Left;
+			buttonEdit.Location = new Point(153, 16);
+			buttonEdit.Name = "buttonEdit";
+			buttonEdit.Size = new Size(121, 40);
+			buttonEdit.TabIndex = 1;
+			buttonEdit.Text = "Редактировать";
+			buttonEdit.UseVisualStyleBackColor = false;
+			buttonEdit.Click += buttonEdit_Click;
 			// 
 			// buttonAdd
 			// 
@@ -52,33 +95,31 @@
 			buttonAdd.Dock = DockStyle.Left;
 			buttonAdd.Location = new Point(16, 16);
 			buttonAdd.Name = "buttonAdd";
-			buttonAdd.Size = new Size(167, 40);
+			buttonAdd.Size = new Size(137, 40);
 			buttonAdd.TabIndex = 0;
 			buttonAdd.Text = "Добавить поставщика";
 			buttonAdd.UseVisualStyleBackColor = false;
 			buttonAdd.Click += buttonAdd_Click;
 			// 
-			// tableLayoutPanel
+			// dataGridView
 			// 
-			tableLayoutPanel.AutoScroll = true;
-			tableLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-			tableLayoutPanel.BackColor = Color.White;
-			tableLayoutPanel.ColumnCount = 1;
-			tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-			tableLayoutPanel.Dock = DockStyle.Fill;
-			tableLayoutPanel.Location = new Point(0, 74);
-			tableLayoutPanel.Name = "tableLayoutPanel";
-			tableLayoutPanel.RowCount = 1;
-			tableLayoutPanel.RowStyles.Add(new RowStyle());
-			tableLayoutPanel.Size = new Size(487, 395);
-			tableLayoutPanel.TabIndex = 1;
+			dataGridView.AllowUserToAddRows = false;
+			dataGridView.AllowUserToDeleteRows = false;
+			dataGridView.BackgroundColor = Color.White;
+			dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			dataGridView.Dock = DockStyle.Fill;
+			dataGridView.Location = new Point(0, 74);
+			dataGridView.Name = "dataGridView";
+			dataGridView.ReadOnly = true;
+			dataGridView.Size = new Size(701, 395);
+			dataGridView.TabIndex = 1;
 			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(487, 469);
-			Controls.Add(tableLayoutPanel);
+			ClientSize = new Size(701, 469);
+			Controls.Add(dataGridView);
 			Controls.Add(panelTop);
 			Icon = (Icon)resources.GetObject("$this.Icon");
 			MaximizeBox = false;
@@ -86,6 +127,7 @@
 			Text = "Список поставщиков";
 			Load += MainForm_Load;
 			panelTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
 			ResumeLayout(false);
 		}
 
@@ -93,6 +135,9 @@
 
 		private Panel panelTop;
 		private Button buttonAdd;
-		private TableLayoutPanel tableLayoutPanel;
+		private DataGridView dataGridView;
+		private Button buttonHistory;
+		private Button buttonDelete;
+		private Button buttonEdit;
 	}
 }

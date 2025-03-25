@@ -23,35 +23,38 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			tableLayoutPanel1 = new TableLayoutPanel();
+			dataGridView1 = new DataGridView();
+			((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
 			SuspendLayout();
 			// 
-			// tableLayoutPanel1
+			// dataGridView1
 			// 
-			tableLayoutPanel1.AutoScroll = true;
-			tableLayoutPanel1.ColumnCount = 1;
-			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.Dock = DockStyle.Fill;
-			tableLayoutPanel1.Location = new Point(0, 0);
-			tableLayoutPanel1.Name = "tableLayoutPanel1";
-			tableLayoutPanel1.RowCount = 1;
-			tableLayoutPanel1.RowStyles.Add(new RowStyle());
-			tableLayoutPanel1.Size = new Size(376, 450);
-			tableLayoutPanel1.TabIndex = 1;
+			dataGridView1.AllowUserToAddRows = false;
+			dataGridView1.AllowUserToDeleteRows = false;
+			dataGridView1.BackgroundColor = Color.White;
+			dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			dataGridView1.Dock = DockStyle.Fill;
+			dataGridView1.Location = new Point(0, 0);
+			dataGridView1.Name = "dataGridView1";
+			dataGridView1.ReadOnly = true;
+			dataGridView1.Size = new Size(661, 440);
+			dataGridView1.TabIndex = 0;
 			// 
 			// FormDeliveries
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(376, 450);
-			Controls.Add(tableLayoutPanel1);
+			ClientSize = new Size(661, 440);
+			Controls.Add(dataGridView1);
 			Name = "FormDeliveries";
 			ShowIcon = false;
 			Text = "История поставок";
+			((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
 			ResumeLayout(false);
 		}
 
 		#endregion
-		private TableLayoutPanel tableLayoutPanel1;
+
+		private DataGridView dataGridView1;
 	}
 }

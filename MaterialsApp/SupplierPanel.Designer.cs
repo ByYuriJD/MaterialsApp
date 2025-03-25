@@ -99,7 +99,7 @@
 			buttonHistory.TabIndex = 3;
 			buttonHistory.Text = "История поставок";
 			buttonHistory.UseVisualStyleBackColor = false;
-			buttonHistory.Click += buttonHistory_Click;
+			//buttonHistory.Click += buttonHistory_Click;
 			// 
 			// buttonActive
 			// 
