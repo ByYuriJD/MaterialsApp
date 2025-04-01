@@ -44,6 +44,7 @@ namespace MaterialsApp {
 		private void updateView() {
 			Supplier[] suppliers = db.Suppliers.Local.ToArray();
 
+			dataGridView.DataSource = suppliers;
 			dataGridView.Refresh();
 
 			for (int i = 0; i < dataGridView.RowCount; i++) {
@@ -102,7 +103,7 @@ namespace MaterialsApp {
 
 		private void buttonDelete_Click(object sender, EventArgs e) {
 			if (dataGridView.SelectedRows.Count == 0) return;
-			Supplier supplier = db.Suppliers.ToArray()[dataGridView.SelectedRows[0].Index];
+			Supplier supplier = db.Suppliers.FirstOrDefault(e => e.Id == (short)dataGridView.SelectedRows[0].Cells["Id"].Value);
 
 			DialogResult result = MessageBox.Show("Вы уверены, что хотите удалить данного поставщика?",
 				"Поставщики",
@@ -111,11 +112,12 @@ namespace MaterialsApp {
 				deleteSupplier(supplier);
 				MessageBox.Show("Поставщик удален");
 			}
+			updateView();
 		}
 
 		private void buttonEdit_Click(object sender, EventArgs e) {
 			if (dataGridView.SelectedRows.Count == 0) return;
-			Supplier supplier = db.Suppliers.ToArray()[dataGridView.SelectedRows[0].Index];
+			Supplier supplier = db.Suppliers.FirstOrDefault(e => e.Id == (short)dataGridView.SelectedRows[0].Cells["Id"].Value);
 
 			FormEditSupplier editSupplier = new FormEditSupplier(db.OrganizationTypes.ToArray(), supplier);
 			DialogResult result = editSupplier.ShowDialog();
@@ -136,7 +138,7 @@ namespace MaterialsApp {
 		private void buttonHistory_Click(object sender, EventArgs e) {
 			if (dataGridView.SelectedRows.Count == 0) return;
 
-			Supplier supplier = db.Suppliers.ToArray()[dataGridView.SelectedRows[0].Index];
+			Supplier supplier = db.Suppliers.FirstOrDefault(e => e.Id == (short)dataGridView.SelectedRows[0].Cells["Id"].Value);
 
 			FormDeliveries formDeliveries = new FormDeliveries(db.MaterialDeliveries.Local.Where(e=>e.IdOfSupplier==supplier.Id).ToArray());
 			formDeliveries.ShowDialog();

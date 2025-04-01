@@ -49,6 +49,7 @@
 			Name = "FormDeliveries";
 			ShowIcon = false;
 			Text = "История поставок";
+			Load += FormDeliveries_Load;
 			((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
 			ResumeLayout(false);
 		}

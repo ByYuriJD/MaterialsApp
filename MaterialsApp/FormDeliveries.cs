@@ -16,6 +16,10 @@ namespace MaterialsApp {
 			this.deliveries = deliveries;
 
 			InitializeComponent();
+		}
+
+		private void FormDeliveries_Load(object sender, EventArgs e) {
+
 			dataGridView1.DataSource = deliveries;
 			dataGridView1.Columns["Id"].Visible = false;
 			dataGridView1.Columns["IdOfMaterialNavigation"].Visible = false;
@@ -25,7 +29,7 @@ namespace MaterialsApp {
 
 
 			{
-				dataGridView1.Columns["AmountInPackage"].HeaderText = "Количство в упаковке";
+				dataGridView1.Columns["AmountInPackage"].HeaderText = "Количество в упаковке";
 				dataGridView1.Columns["AmountInPackage"].DisplayIndex = 1;
 				dataGridView1.Columns["AmountInPackage"].DefaultCellStyle.Alignment =
 					DataGridViewContentAlignment.MiddleCenter;
@@ -60,7 +64,7 @@ namespace MaterialsApp {
 			for (int i = 0; i < dataGridView1.RowCount; i++) {
 				DataGridViewRow row = dataGridView1.Rows[i];
 				row.Cells["MaterialName"] = new DataGridViewTextBoxCell();
-				row.Cells["MaterialName"].Value = "abc";
+				row.Cells["MaterialName"].Value = deliveries[i].IdOfMaterialNavigation.NameOfMaterial;
 			}
 		}
 	}
